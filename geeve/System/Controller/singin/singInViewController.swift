@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 class singInViewController: UIViewController {
   
     @IBOutlet weak var email: UITextField!
@@ -27,7 +27,7 @@ class singInViewController: UIViewController {
    
     @IBAction func remember_Mi_Btn(_ sender: Any) {
         
-        
+    
         if  !remember_me.isSelected == true {
             
             let image = UIImage(named: "cutome")
@@ -64,10 +64,26 @@ class singInViewController: UIViewController {
             
         }else {
             
-//            coredataHeleper.shard.savedata(name: self.email.text ?? "bop" , age: self.pass.text ?? "nop" )
+
+            Auth.auth().signIn(withEmail: self.email.text!, password: self.pass.text!) {data,erro in
+                if let error = erro as? NSError {
+                    print(error.localizedDescription)
+                    
+                }else{
+                 
+                    print("userlogin")
+                     
+                     let userinfo = Auth.auth().currentUser
+                     login(Email: self.email.text!, Password: self.pass.text! )
+                     
+                     let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registrationViewController")
+                     self.navigationController?.pushViewController(vc, animated: true)
+                    
+                }
+              
+            }
             
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registrationViewController")
-            self.navigationController?.pushViewController(vc, animated: true)
+           
         }
             
         

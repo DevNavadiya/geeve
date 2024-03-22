@@ -12,7 +12,6 @@
 		680FBAC22BA1A4610068824E /* forgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680FBAC12BA1A4610068824E /* forgetPasswordViewController.swift */; };
 		680FBAC42BA1A4A10068824E /* otpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680FBAC32BA1A4A10068824E /* otpViewController.swift */; };
 		680FBAC62BA1A9B70068824E /* resetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680FBAC52BA1A9B70068824E /* resetPassViewController.swift */; };
-		682155EC2BA653BC00E43F79 /* dataBaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682155EB2BA653BC00E43F79 /* dataBaseHelper.swift */; };
 		6823A1922BA8243B008D6196 /* inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6823A1912BA8243B008D6196 /* inter.ttf */; };
 		6850F16F2BAC19CD003031EC /* webViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6850F16E2BAC19CD003031EC /* webViewController.swift */; };
 		6850F1712BAC3061003031EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6850F1702BAC3061003031EC /* GoogleService-Info.plist */; };
@@ -22,6 +21,7 @@
 		686843C42BA2D9DD009C6ED5 /* donationPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686843C32BA2D9DD009C6ED5 /* donationPagesViewController.swift */; };
 		686843C72BA2DA3C009C6ED5 /* donationPagesCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686843C52BA2DA3C009C6ED5 /* donationPagesCellTableViewCell.swift */; };
 		686843C82BA2DA3C009C6ED5 /* donationPagesCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686843C62BA2DA3C009C6ED5 /* donationPagesCellTableViewCell.xib */; };
+		68A61E972BAD46CC008FD2BB /* fireBaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A61E962BAD46CC008FD2BB /* fireBaseHelper.swift */; };
 		83161CD488C2F9461D5E8D59 /* Pods_geeveTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A00D694E05C9393D9144074 /* Pods_geeveTests.framework */; };
 		CE7FD8D12B91CBE9009AE229 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FD8D02B91CBE9009AE229 /* AppDelegate.swift */; };
 		CE7FD8D32B91CBE9009AE229 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7FD8D22B91CBE9009AE229 /* SceneDelegate.swift */; };
@@ -68,7 +68,6 @@
 		680FBAC12BA1A4610068824E /* forgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgetPasswordViewController.swift; sourceTree = "<group>"; };
 		680FBAC32BA1A4A10068824E /* otpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = otpViewController.swift; sourceTree = "<group>"; };
 		680FBAC52BA1A9B70068824E /* resetPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetPassViewController.swift; sourceTree = "<group>"; };
-		682155EB2BA653BC00E43F79 /* dataBaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataBaseHelper.swift; sourceTree = "<group>"; };
 		6823A1912BA8243B008D6196 /* inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = inter.ttf; sourceTree = "<group>"; };
 		6850F16E2BAC19CD003031EC /* webViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = webViewController.swift; sourceTree = "<group>"; };
 		6850F1702BAC3061003031EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -78,6 +77,7 @@
 		686843C32BA2D9DD009C6ED5 /* donationPagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = donationPagesViewController.swift; sourceTree = "<group>"; };
 		686843C52BA2DA3C009C6ED5 /* donationPagesCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = donationPagesCellTableViewCell.swift; sourceTree = "<group>"; };
 		686843C62BA2DA3C009C6ED5 /* donationPagesCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = donationPagesCellTableViewCell.xib; sourceTree = "<group>"; };
+		68A61E962BAD46CC008FD2BB /* fireBaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fireBaseHelper.swift; sourceTree = "<group>"; };
 		7A00D694E05C9393D9144074 /* Pods_geeveTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_geeveTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D2EB479FA3E6BD4181CF60 /* Pods-geeve.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-geeve.debug.xcconfig"; path = "Target Support Files/Pods-geeve/Pods-geeve.debug.xcconfig"; sourceTree = "<group>"; };
 		88B2F0355E1689EBB8CABDF1 /* Pods-geeve-geeveUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-geeve-geeveUITests.release.xcconfig"; path = "Target Support Files/Pods-geeve-geeveUITests/Pods-geeve-geeveUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,7 +161,6 @@
 		682155EA2BA6532D00E43F79 /* forgatpassword */ = {
 			isa = PBXGroup;
 			children = (
-				680FBAC32BA1A4A10068824E /* otpViewController.swift */,
 				680FBAC12BA1A4610068824E /* forgetPasswordViewController.swift */,
 				680FBAC52BA1A9B70068824E /* resetPassViewController.swift */,
 			);
@@ -279,6 +278,7 @@
 				682155EA2BA6532D00E43F79 /* forgatpassword */,
 				CE7FD9072B91CD14009AE229 /* customepageviewcontroler.swift */,
 				686843BD2BA2D929009C6ED5 /* registrationViewController.swift */,
+				680FBAC32BA1A4A10068824E /* otpViewController.swift */,
 				686843BF2BA2D97D009C6ED5 /* customePopUpViewController.swift */,
 				686843C12BA2D9A5009C6ED5 /* customeSideBarViewController.swift */,
 				686843C32BA2D9DD009C6ED5 /* donationPagesViewController.swift */,
@@ -298,7 +298,7 @@
 		CE7FD9162B91CE58009AE229 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				682155EB2BA653BC00E43F79 /* dataBaseHelper.swift */,
+				68A61E962BAD46CC008FD2BB /* fireBaseHelper.swift */,
 				CE7FD90F2B91CDBD009AE229 /* onBordingslide.swift */,
 				CE7FD9112B91CDD5009AE229 /* helperFunction.swift */,
 			);
@@ -572,10 +572,10 @@
 				680FBAC62BA1A9B70068824E /* resetPassViewController.swift in Sources */,
 				680FBAC42BA1A4A10068824E /* otpViewController.swift in Sources */,
 				680FBAC02BA1A3890068824E /* singInViewController.swift in Sources */,
-				682155EC2BA653BC00E43F79 /* dataBaseHelper.swift in Sources */,
 				CE7FD90C2B91CD6C009AE229 /* mainViewController.swift in Sources */,
 				686843C42BA2D9DD009C6ED5 /* donationPagesViewController.swift in Sources */,
 				686843BE2BA2D929009C6ED5 /* registrationViewController.swift in Sources */,
+				68A61E972BAD46CC008FD2BB /* fireBaseHelper.swift in Sources */,
 				CE7FD9102B91CDBD009AE229 /* onBordingslide.swift in Sources */,
 				686843C72BA2DA3C009C6ED5 /* donationPagesCellTableViewCell.swift in Sources */,
 				686843C22BA2D9A5009C6ED5 /* customeSideBarViewController.swift in Sources */,

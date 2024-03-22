@@ -13,9 +13,17 @@ class otpViewController: UIViewController {
 
     @IBOutlet weak var otp: AEOTPTextField!
      var getotp = ""
+    
+    var name = String()
+    var lastname = String()
+    var email = String()
+    var phonenumber = String()
+    var password = String()
+    var uid = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         self.otp.otpDelegate = self
         otp.configure(with: 4)
         otp.otpFilledBorderColor = .orange
@@ -27,12 +35,16 @@ class otpViewController: UIViewController {
     
     @IBAction func continu_btn(_ sender: Any) {
        
-      
+
+          saveUserData(name: name, lastname: lastname, Email: email, phonenumber: phonenumber, Password: password, id: uid)
+        
+        
+        print(lastname)
         if let otp = otp.text , !otp.isEmpty {
             
             if otp == getotp{
                 
-                navigateToViewController(main: "Main", storyboard: "resetPassViewController", navigationController: self.navigationController)
+                navigateToViewController(main: "Main", storyboard: "registrationViewController", navigationController: self.navigationController)
             }
         }
     

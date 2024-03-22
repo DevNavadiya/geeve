@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 
 
 
@@ -27,7 +27,7 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
     
     @IBOutlet weak var tic_mark_Terms: UIButton!
     
-    
+    var id = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,9 +102,30 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
         }
         
         else {
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registrationViewController")
+           
+            Auth.auth().createUser(withEmail: self.Email_Textfiled.text ?? "nil" , password: self.paswoord_Text_filed.text ?? "nil"){otheruser,error in
+                if let error = error as? NSError {
+                    print(error.localizedDescription)
+                }else{
+                    print("user rejister")
+                    let userInfo = Auth.auth().currentUser
+                    self.id = userInfo!.uid
+                }
+                
+            }
             
-            self.navigationController?.pushViewController(vc, animated: true)
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "otpViewController") as! otpViewController
+           
+           
+            
+            vc.name = self.firest_Name_Texfild.text ?? "no name"
+            vc.lastname = self.last_Name_TextFileld.text ?? "no last name"
+            vc.email = self.Email_Textfiled.text ?? "no email"
+            vc.phonenumber = self.phone_number_textFild.text ?? "no password"
+            vc.password = self.paswoord_Text_filed.text ?? "no pass"
+            vc.uid = self.id
+            
+            self.navigationController?.pushViewController(vc, animated: true )
         }
     }
    

@@ -32,7 +32,7 @@ class forgetPasswordViewController: UIViewController {
             
         }
             else {
-                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "otpViewController")
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "resetPassViewController")
                 
                 
                 self.navigationController?.pushViewController(vc, animated: true )
