@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import UIKit
+import FirebaseAuth
 
 
 
@@ -34,3 +35,6 @@ func saveUserData (name : String , lastname : String , Email : String , phonenum
     
     
 }
+
+
+

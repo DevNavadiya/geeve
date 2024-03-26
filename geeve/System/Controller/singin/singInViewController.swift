@@ -68,6 +68,15 @@ class singInViewController: UIViewController {
             Auth.auth().signIn(withEmail: self.email.text!, password: self.pass.text!) {data,erro in
                 if let error = erro as? NSError {
                     print(error.localizedDescription)
+                
+                    
+                    let alert = UIAlertController(title: "New User Found", message: "Plese chke your email id , your emai was allredy rejister on geeve", preferredStyle: .alert)
+                    let btn = UIAlertAction(title: "OK", style: .destructive)
+                    
+                    alert.addAction(btn)
+                    
+                    self.present(alert, animated: true)
+                    
                     
                 }else{
                  
@@ -75,7 +84,8 @@ class singInViewController: UIViewController {
                      
                      let userinfo = Auth.auth().currentUser
                      login(Email: self.email.text!, Password: self.pass.text! )
-                     
+                     login(Email: self.email.text ?? "no email", Password: self.pass.text ?? "no pass" )
+                    
                      let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registrationViewController")
                      self.navigationController?.pushViewController(vc, animated: true)
                     

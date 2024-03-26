@@ -1059,16 +1059,16 @@ we’ve sent you</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dlg-pg-aXX" customClass="AEOTPTextField" customModule="AEOTPTextField">
-                                <rect key="frame" x="50" y="207" width="293" height="70"/>
+                                <rect key="frame" x="20" y="207" width="353" height="65"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="bPp-7x-RaB"/>
+                                    <constraint firstAttribute="height" constant="65" id="bPp-7x-RaB"/>
                                 </constraints>
                                 <color key="textColor" red="0.98039215690000003" green="0.47450980390000003" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGg-KQ-f2J">
-                                <rect key="frame" x="30" y="343" width="333" height="60"/>
+                                <rect key="frame" x="30" y="338" width="333" height="60"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.47450980390000003" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Bdg-lB-IjP"/>
@@ -1114,12 +1114,12 @@ we’ve sent you</string>
                             <constraint firstItem="tOK-Ym-c78" firstAttribute="centerX" secondItem="BG5-Cr-qTi" secondAttribute="centerX" id="JwP-Mu-MoI"/>
                             <constraint firstItem="BZq-uw-ESK" firstAttribute="leading" secondItem="Lmt-Z8-OTB" secondAttribute="leading" id="WIm-vL-gBa"/>
                             <constraint firstItem="Lmt-Z8-OTB" firstAttribute="trailing" secondItem="SGg-KQ-f2J" secondAttribute="trailing" constant="30" id="Z8y-rG-59Q"/>
-                            <constraint firstItem="Lmt-Z8-OTB" firstAttribute="trailing" secondItem="dlg-pg-aXX" secondAttribute="trailing" constant="50" id="iZd-VR-nKV"/>
+                            <constraint firstItem="Lmt-Z8-OTB" firstAttribute="trailing" secondItem="dlg-pg-aXX" secondAttribute="trailing" constant="20" id="iZd-VR-nKV"/>
                             <constraint firstItem="dlg-pg-aXX" firstAttribute="top" secondItem="7In-ME-gy7" secondAttribute="bottom" constant="45" id="jmk-BA-Uan"/>
                             <constraint firstItem="SGg-KQ-f2J" firstAttribute="top" secondItem="dlg-pg-aXX" secondAttribute="bottom" constant="66" id="mk9-fv-rFS"/>
                             <constraint firstItem="7In-ME-gy7" firstAttribute="top" secondItem="tOK-Ym-c78" secondAttribute="bottom" constant="26" id="pbZ-8J-Ybk"/>
                             <constraint firstItem="Jfk-PM-QJO" firstAttribute="leading" secondItem="Lmt-Z8-OTB" secondAttribute="leading" constant="20" id="rKI-Xy-SYd"/>
-                            <constraint firstItem="dlg-pg-aXX" firstAttribute="leading" secondItem="Lmt-Z8-OTB" secondAttribute="leading" constant="50" id="tLh-EN-YVp"/>
+                            <constraint firstItem="dlg-pg-aXX" firstAttribute="leading" secondItem="Lmt-Z8-OTB" secondAttribute="leading" constant="20" id="tLh-EN-YVp"/>
                             <constraint firstItem="tOK-Ym-c78" firstAttribute="top" secondItem="Lmt-Z8-OTB" secondAttribute="top" constant="10" id="ukO-UC-4Fg"/>
                             <constraint firstAttribute="bottom" secondItem="BZq-uw-ESK" secondAttribute="bottom" id="ulq-Xc-VOo"/>
                             <constraint firstItem="SGg-KQ-f2J" firstAttribute="leading" secondItem="Lmt-Z8-OTB" secondAttribute="leading" constant="30" id="zK8-gg-ZM0"/>
