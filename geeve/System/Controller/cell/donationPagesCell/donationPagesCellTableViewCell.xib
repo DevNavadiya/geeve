@@ -43,6 +43,9 @@
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="Delet"/>
+                                <connections>
+                                    <action selector="deletbuttontap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="G55-2B-jPQ"/>
+                                </connections>
                             </button>
                         </subviews>
                     </stackView>
@@ -50,13 +53,13 @@
                         <rect key="frame" x="10" y="10" width="250" height="72"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jesus House Toronto" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="tSK-qT-f2W">
-                                <rect key="frame" x="10" y="10.000000000000002" width="220" height="20.666666666666671"/>
+                                <rect key="frame" x="10" y="10" width="220" height="20"/>
                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asma@jesushouse.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6E-cj-2mH">
-                                <rect key="frame" x="10" y="37.333333333333336" width="220" height="14.666666666666664"/>
+                                <rect key="frame" x="10" y="38" width="220" height="14"/>
                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="12"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -104,6 +107,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="age" destination="T6E-cj-2mH" id="PTz-YB-URv"/>
+                <outlet property="deletdata" destination="j3k-lZ-pk7" id="Tgp-rv-cQl"/>
+                <outlet property="editdata" destination="CLS-6c-0Ey" id="TaH-8h-7h5"/>
                 <outlet property="name" destination="tSK-qT-f2W" id="QCX-b6-82O"/>
             </connections>
             <point key="canvasLocation" x="143.5114503816794" y="34.507042253521128"/>

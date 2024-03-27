@@ -10,14 +10,15 @@ import SideMenu
 
 
 
+
 class registrationViewController: UIViewController {
     @IBOutlet weak var donor_btn: UIButton!
     @IBOutlet weak var donee: UIButton!
     @IBOutlet weak var sidebar: UIButton!
 //    var data = [UserSingIn]()
     
-    
-
+   
+    var notindata = String()
     enum animationtup {
         case slidein , slideout
     }
@@ -33,12 +34,14 @@ class registrationViewController: UIViewController {
     @IBAction func go_Btn(_ sender: Any) {
         if donee.isSelected == true || donor_btn.isSelected == true {
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "customePopUpViewController") as! customePopUpViewController
+            userdata.sherd.getdata(noindata: notindata)
             
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
             vc.clouser = {
                 navigateToViewController(main: "Main", storyboard: "donationPagesViewController", navigationController: self.navigationController)
-            }
+                
+                }
             self.present(vc, animated: true)
         } else {
             let alert = UIAlertController(title: "DONOR OR DONEE", message: "Plese select one option , you are DONOR or DONEE", preferredStyle: .alert)

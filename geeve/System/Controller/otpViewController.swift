@@ -69,14 +69,23 @@ sendOTP()
             }
             
             let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: self.otp.text!)
-            Auth.auth().signIn(with: credential) { (authdata, error) in
-                if let error = error {
-                    print("Error signing in:", error)
-                    return
-                }
-                saveUserData(name: self.name, lastname: self.lastname, Email: self.email, phonenumber: self.phonenumber, Password: self.password, id: self.uid)
-                navigateToViewController(main: "Main", storyboard: "registrationViewController", navigationController: self.navigationController)
+        Auth.auth().signIn(with: credential) { (authdata, error) in
+            if let error = error {
+                print("Error signing in:", error)
+                return
             }
+           
+            saveUserData(name: self.name, lastname: self.lastname, Email: self.email, phonenumber: self.phonenumber, Password: self.password, id: self.uid)
+            
+           
+            
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "registrationViewController") as! registrationViewController
+           
+            vc.notindata = self.email
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+             }
         }
     
     @IBAction func back_btn(_ sender: Any) {

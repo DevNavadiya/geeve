@@ -14,7 +14,7 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
 
     @IBOutlet weak var tabelview: UITableView!
 //    var data = [UserSingUp]()
-    
+    var dataFromeFirebaseHelper = userdata.sherd.sharDataFromeGetdata()
     override func viewDidLoad() {
         super.viewDidLoad()
 //        print(data)
@@ -25,20 +25,24 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return dataFromeFirebaseHelper.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "donationPagesCellTableViewCell") as! donationPagesCellTableViewCell
         
-//        let index = data[indexPath.row]
+        let index = dataFromeFirebaseHelper[indexPath.row]
         
         
-//        cell.name.text = index.firestname
-//        cell.age.text = index.lastname
+        cell.name.text = index.UserName
+        cell.age.text = index.Email
+        cell.documentid = index.Email
+        
         
         return cell
+      
+        
     }
    
     @IBAction func sidebar(_ sender: Any) {

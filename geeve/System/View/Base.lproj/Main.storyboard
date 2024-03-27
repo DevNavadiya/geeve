@@ -2048,7 +2048,7 @@ password</string>
                                 <rect key="frame" x="0.0" y="154" width="393" height="664"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image 6" translatesAutoresizingMaskIntoConstraints="NO" id="KBW-Nc-Wns">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image 6" translatesAutoresizingMaskIntoConstraints="NO" id="KBW-Nc-Wns">
                                 <rect key="frame" x="0.0" y="652" width="393" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="lj4-8j-xKk"/>
