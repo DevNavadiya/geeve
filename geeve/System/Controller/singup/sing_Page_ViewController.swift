@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 
 
@@ -23,18 +24,61 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
     
     @IBOutlet weak var paswoord_Text_filed: UITextField!
     
+    @IBOutlet weak var terms: UIButton!
+  
     @IBOutlet weak var enter_conform_password_textfild: UITextField!
     
     @IBOutlet weak var tic_mark_Terms: UIButton!
+    @IBOutlet weak var i_agerr: UILabel!
+    @IBOutlet weak var alredyhave_account: UIButton!
+    
+    @IBOutlet weak var singin: UIButton!
+    
+    @IBOutlet weak var signup: UIButton!
     
     var id = ""
     
+    var firestname : String?
+    var lastname : String?
+    var email : String?
+    var phone : String?
+    var pass : String?
+    
+    
+    
+    
+    
+    func hideui () {
+        self.tic_mark_Terms.isHidden = true
+        self.i_agerr.isHidden = true
+        self.terms.isHidden = true
+        self.alredyhave_account.isHidden = true
+        self.singin.isHidden = true
+        self.Email_Textfiled.isUserInteractionEnabled = false
+        self.phone_number_textFild.isUserInteractionEnabled = false
+        signup.setTitle("UPDATE", for: .normal)
+        self.tic_mark_Terms.isSelected = true
+    }
+    var shoudhideui = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         self.phone_number_textFild.keyboardType = .numberPad
-      
+       
+    
+        
+        if shoudhideui {
+            hideui()
+            self.firest_Name_Texfild.text = firestname
+            self.last_Name_TextFileld.text = lastname
+            self.Email_Textfiled.text = email
+            self.phone_number_textFild.text = phone
+            self.paswoord_Text_filed.text = pass
+            self.enter_conform_password_textfild.text = pass
+           
+        }
+        
     }
     
     // MARK: - terms butoon condition -
@@ -65,6 +109,9 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
     }
     
     // MARK: - Sing UP condition -
+    
+   
+    
     
     
     @IBAction func sing_Up_Btn(_ sender: Any) {
@@ -114,21 +161,37 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
                 
             }
             
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "otpViewController") as! otpViewController
            
-           
-            
-            vc.name = self.firest_Name_Texfild.text ?? "no name"
-            vc.lastname = self.last_Name_TextFileld.text ?? "no last name"
-            vc.email = self.Email_Textfiled.text ?? "no email"
-            vc.phonenumber = self.phone_number_textFild.text ?? "no password"
-            vc.password = self.paswoord_Text_filed.text ?? "no pass"
-            vc.uid = self.id
-            
-            self.navigationController?.pushViewController(vc, animated: true )
+            if shoudhideui == false {
+                
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "otpViewController") as! otpViewController
+                
+                
+                
+                vc.name = self.firest_Name_Texfild.text ?? "no name"
+                vc.lastname = self.last_Name_TextFileld.text ?? "no last name"
+                vc.email = self.Email_Textfiled.text ?? "no email"
+                vc.phonenumber = self.phone_number_textFild.text ?? "no password"
+                vc.password = self.paswoord_Text_filed.text ?? "no pass"
+                vc.uid = self.id
+                
+                self.navigationController?.pushViewController(vc, animated: true )
+                
+            }else{
+                
+                
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "donationPagesViewController") as! donationPagesViewController
+                updateUser()
+//                vc.relodedata()
+               
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
    
+    
+    
+    
     // MARK: - Singin -
     
     @IBAction func singin(_ sender: Any) {
@@ -146,6 +209,32 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
         
     }
     
-    
+    func updateUser() {
+        
+        guard let userId = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let database = Firestore.firestore()
+        let userRef = database.collection("Userinfo").document(self.Email_Textfiled.text!)
+        
+        userRef.updateData([
+            "name": firest_Name_Texfild.text ?? "",
+            "lastname": last_Name_TextFileld.text ?? "",
+            "Email": Email_Textfiled.text ?? "",
+            "phonenumber": phone_number_textFild.text ?? "",
+            "Password": paswoord_Text_filed.text ?? ""
+        ]) { [weak self] error in
+            if let error = error {
+                print("Error updating user data: \(error.localizedDescription)")
+            } else {
+                print("User data updated successfully")
+                userdata.sherd.getdata(noindata: self?.Email_Textfiled.text ?? "")
+            }
+        }
+        
+        
+    }
+
     
 }

@@ -176,6 +176,49 @@
 			path = donationPagesCell;
 			sourceTree = "<group>";
 		};
+		686B21952BB536620058EBF1 /* registar flow */ = {
+			isa = PBXGroup;
+			children = (
+				686843BD2BA2D929009C6ED5 /* registrationViewController.swift */,
+				680FBAC32BA1A4A10068824E /* otpViewController.swift */,
+			);
+			path = "registar flow";
+			sourceTree = "<group>";
+		};
+		686B21962BB536890058EBF1 /* coustome side bar and alert */ = {
+			isa = PBXGroup;
+			children = (
+				CE7FD9072B91CD14009AE229 /* customepageviewcontroler.swift */,
+				686843BF2BA2D97D009C6ED5 /* customePopUpViewController.swift */,
+				686843C12BA2D9A5009C6ED5 /* customeSideBarViewController.swift */,
+			);
+			path = "coustome side bar and alert";
+			sourceTree = "<group>";
+		};
+		686B21972BB536CF0058EBF1 /* Starting scrrn */ = {
+			isa = PBXGroup;
+			children = (
+				CE7FD90B2B91CD6C009AE229 /* mainViewController.swift */,
+			);
+			path = "Starting scrrn";
+			sourceTree = "<group>";
+		};
+		686B21982BB537060058EBF1 /* Terms and condition */ = {
+			isa = PBXGroup;
+			children = (
+				6850F16E2BAC19CD003031EC /* webViewController.swift */,
+			);
+			path = "Terms and condition";
+			sourceTree = "<group>";
+		};
+		686B21992BB537220058EBF1 /* donation list */ = {
+			isa = PBXGroup;
+			children = (
+				686843C32BA2D9DD009C6ED5 /* donationPagesViewController.swift */,
+			);
+			path = "donation list";
+			sourceTree = "<group>";
+		};
 		CD0ACAA3F719DFC7A64DA1CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,17 +315,14 @@
 		CE7FD9062B91CC49009AE229 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CE7FD90B2B91CD6C009AE229 /* mainViewController.swift */,
+				686B21972BB536CF0058EBF1 /* Starting scrrn */,
 				682155E82BA652C400E43F79 /* singup */,
 				682155E92BA6530E00E43F79 /* singin */,
 				682155EA2BA6532D00E43F79 /* forgatpassword */,
-				CE7FD9072B91CD14009AE229 /* customepageviewcontroler.swift */,
-				686843BD2BA2D929009C6ED5 /* registrationViewController.swift */,
-				680FBAC32BA1A4A10068824E /* otpViewController.swift */,
-				686843BF2BA2D97D009C6ED5 /* customePopUpViewController.swift */,
-				686843C12BA2D9A5009C6ED5 /* customeSideBarViewController.swift */,
-				686843C32BA2D9DD009C6ED5 /* donationPagesViewController.swift */,
-				6850F16E2BAC19CD003031EC /* webViewController.swift */,
+				686B21952BB536620058EBF1 /* registar flow */,
+				686B21962BB536890058EBF1 /* coustome side bar and alert */,
+				686B21982BB537060058EBF1 /* Terms and condition */,
+				686B21992BB537220058EBF1 /* donation list */,
 				680FBABE2BA1A2BC0068824E /* cell */,
 			);
 			path = Controller;

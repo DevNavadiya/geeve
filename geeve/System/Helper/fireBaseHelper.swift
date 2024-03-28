@@ -46,15 +46,26 @@ class userdata {
     
     static let sherd = userdata()
     
+    typealias DataChangedHandler = () -> Void
+       var dataChangedHandler: DataChangedHandler?
+
    
     struct firebaseuser {
         
         var UserName = String()
         var Email = String()
+        var lastname = String()
+        var password = String()
+        var phonenumber = String()
+        
         
         init(dic : [String : Any]) {
             self.UserName = dic["name"] as? String ?? ""
             self.Email = dic["Email"] as? String ?? ""
+            self.lastname = dic["lastname"] as? String ?? ""
+            self.password = dic["Password"] as? String ?? ""
+            self.phonenumber = dic["phonenumber"] as? String ?? ""
+           
         }
         
         
@@ -78,6 +89,7 @@ func getdata (noindata : String) {
                     self.firedata2 = firebaseuser(dic : i.data())
                     self.firedata.append(self.firedata2)
                 }
+                self.dataChangedHandler?()
             }
         }
         
@@ -90,19 +102,12 @@ func getdata (noindata : String) {
     }
     
     
-    func deleteDocument(documentId: String) async {
-       
-        do {
-
-            try await databaase.collection("Userinfo").document(documentId).updateData([
-            "capital": FieldValue.delete(),
-          ])
-          print("Document successfully updated")
-        } catch {
-          print("Error updating document: \(error)")
+    func deleteDocument(documentId: String, completion: @escaping (Error?) -> Void) {
+        databaase.collection("Userinfo").document(documentId).delete { error in
+            completion(error)
         }
-        
     }
+
     
     
 }
