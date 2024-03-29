@@ -19,28 +19,37 @@ class registrationViewController: UIViewController {
     
    
     var notindata = String()
+    
+    
+    
     enum animationtup {
         case slidein , slideout
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        defultdata.sher.setnotindata(notindata: notindata)
+      
         self.donor_btn.isSelected = true
         self.donor_btn.layer.borderWidth = 5
         self.donor_btn.layer.borderColor = UIColor.orange.cgColor
 
     }
     @IBAction func go_Btn(_ sender: Any) {
+      
+        
         if donee.isSelected == true || donor_btn.isSelected == true {
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "customePopUpViewController") as! customePopUpViewController
-            userdata.sherd.getdata(noindata: notindata)
+            
+          
             
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
             vc.clouser = {
-                navigateToViewController(main: "Main", storyboard: "donationPagesViewController", navigationController: self.navigationController)
+               
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "donationPagesViewController") as! donationPagesViewController
                 
+                self.navigationController?.pushViewController(vc, animated: true)
                 }
             self.present(vc, animated: true)
         } else {

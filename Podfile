@@ -13,6 +13,7 @@ pod 'SideMenu'
 pod 'FirebaseAnalytics'
 pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
+pod 'RealmSwift'
 
   target 'geeveTests' do
     inherit! :search_paths

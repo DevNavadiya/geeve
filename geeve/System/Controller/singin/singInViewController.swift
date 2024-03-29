@@ -83,11 +83,10 @@ class singInViewController: UIViewController {
                     print("userlogin")
                      
                      let userinfo = Auth.auth().currentUser
-                     login(Email: self.email.text!, Password: self.pass.text! )
-                     login(Email: self.email.text ?? "no email", Password: self.pass.text ?? "no pass" )
-                    
+                    login(Email: defultdata.sher.getemail() ?? "", Password: defultdata.sher.getpassword() ?? "" )
+                   
                      let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registrationViewController") as! registrationViewController
-                    vc.notindata = self.email.text!
+                    vc.notindata = defultdata.sher.getemail() ?? ""
                      self.navigationController?.pushViewController(vc, animated: true)
                     
                 }
@@ -112,6 +111,12 @@ class singInViewController: UIViewController {
     
     @IBAction func sing_In_Btn(_ sender: Any) {
         navigateToViewController(main: "Main", storyboard: "sing_Page_ViewController", navigationController: self.navigationController)
+        
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "donationPagesViewController") as! donationPagesViewController
+        
+        vc.userin.set(true, forKey: "USERIN")
+        
     }
     
     @IBAction func eye(_ sender: Any) {

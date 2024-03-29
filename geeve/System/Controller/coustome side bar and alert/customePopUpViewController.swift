@@ -20,6 +20,7 @@ class customePopUpViewController: UIViewController {
     @IBAction func singupbtn(_ sender: Any) {
         
         self.clouser?()
+        UserDefaults.standard.set(true, forKey: "USERIN")
         self.dismiss(animated: true)
         
     }

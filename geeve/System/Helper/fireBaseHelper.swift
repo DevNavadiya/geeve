@@ -82,6 +82,7 @@ func getdata (noindata : String) {
                 print("nodata")
                 
             }else{
+                self.firedata.removeAll() 
                 let arr = quary?.documents
                 for i in arr! {
                     i.data()

@@ -25,7 +25,7 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
     @IBOutlet weak var paswoord_Text_filed: UITextField!
     
     @IBOutlet weak var terms: UIButton!
-  
+    
     @IBOutlet weak var enter_conform_password_textfild: UITextField!
     
     @IBOutlet weak var tic_mark_Terms: UIButton!
@@ -48,6 +48,7 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
     
     
     
+    
     func hideui () {
         self.tic_mark_Terms.isHidden = true
         self.i_agerr.isHidden = true
@@ -60,13 +61,18 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
         self.tic_mark_Terms.isSelected = true
     }
     var shoudhideui = false
+  
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         self.phone_number_textFild.keyboardType = .numberPad
-       
-    
+        
+        
+        
+        
         
         if shoudhideui {
             hideui()
@@ -76,7 +82,7 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
             self.phone_number_textFild.text = phone
             self.paswoord_Text_filed.text = pass
             self.enter_conform_password_textfild.text = pass
-           
+            
         }
         
     }
@@ -110,7 +116,7 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
     
     // MARK: - Sing UP condition -
     
-   
+    
     
     
     
@@ -149,7 +155,7 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
         }
         
         else {
-           
+            
             Auth.auth().createUser(withEmail: self.Email_Textfiled.text ?? "nil" , password: self.paswoord_Text_filed.text ?? "nil"){otheruser,error in
                 if let error = error as? NSError {
                     print(error.localizedDescription)
@@ -161,7 +167,7 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
                 
             }
             
-           
+            
             if shoudhideui == false {
                 
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "otpViewController") as! otpViewController
@@ -174,7 +180,7 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
                 vc.phonenumber = self.phone_number_textFild.text ?? "no password"
                 vc.password = self.paswoord_Text_filed.text ?? "no pass"
                 vc.uid = self.id
-                
+
                 self.navigationController?.pushViewController(vc, animated: true )
                 
             }else{
@@ -182,13 +188,13 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
                 
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "donationPagesViewController") as! donationPagesViewController
                 updateUser()
-//                vc.relodedata()
-               
+                //                vc.relodedata()
+                
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
-   
+    
     
     
     
@@ -216,7 +222,7 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
         }
         
         let database = Firestore.firestore()
-        let userRef = database.collection("Userinfo").document(self.Email_Textfiled.text!)
+        let userRef = database.collection("Userinfo").document(defultdata.sher.getemail() ?? "")
         
         userRef.updateData([
             "name": firest_Name_Texfild.text ?? "",
@@ -229,12 +235,26 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
                 print("Error updating user data: \(error.localizedDescription)")
             } else {
                 print("User data updated successfully")
-                userdata.sherd.getdata(noindata: self?.Email_Textfiled.text ?? "")
+                userdata.sherd.getdata(noindata: defultdata.sher.getnotindata() ?? "")
+                
+                if let donationVC = self?.navigationController?.viewControllers.last as? donationPagesViewController {
+                    donationVC.reloadData()
+                }
+                
+                
             }
         }
         
         
     }
+    
+    
+}
+
+
+
+extension sing_Page_ViewController {
+    
 
     
 }

@@ -14,6 +14,8 @@ class otpViewController: UIViewController {
 
     @IBOutlet weak var otp: AEOTPTextField!
      var getotp = ""
+   
+    let data = defultdata.sher
     
     var name = String()
     var lastname = String()
@@ -22,9 +24,21 @@ class otpViewController: UIViewController {
     var password = String()
     var uid = String()
     var verificationID : String?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        
+     
+        data.setname(firestname: name)
+        data.setlastname(lastname: lastname)
+        data.setemail(email: email)
+        data.setphoneNumber(phonenumber: phonenumber)
+        data.setpassword(password: password)
+        
+        
+        
         self.otp.otpDelegate = self
         otp.configure(with: 6)
         otp.otpFilledBorderColor = .orange
@@ -35,7 +49,7 @@ sendOTP()
     }
     
     func sendOTP() {
-            PhoneAuthProvider.provider().verifyPhoneNumber(phonenumber, uiDelegate: nil) { verificationID, error in
+        PhoneAuthProvider.provider().verifyPhoneNumber(defultdata.sher.getphoneNumber() ?? "", uiDelegate: nil) { verificationID, error in
                 if let error = error {
                     
                     print("Error verifying phone number:", error)
@@ -63,6 +77,10 @@ sendOTP()
        
 //        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
         
+        
+        
+       
+       
         guard let verificationID = self.verificationID else {
                 print("Verification ID is nil")
                 return
@@ -75,7 +93,7 @@ sendOTP()
                 return
             }
            
-            saveUserData(name: self.name, lastname: self.lastname, Email: self.email, phonenumber: self.phonenumber, Password: self.password, id: self.uid)
+            saveUserData(name: self.data.getname() ?? "", lastname: self.data.getlastname() ?? "" , Email: self.data.getemail() ?? "", phonenumber: self.data.getphoneNumber() ?? "", Password: self.password, id: self.uid)
             
            
             

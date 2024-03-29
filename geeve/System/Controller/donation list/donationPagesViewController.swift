@@ -10,7 +10,7 @@ import SideMenu
 
 class donationPagesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
-    
+    var userin = UserDefaults.standard
 
     @IBOutlet weak var tabelview: UITableView!
 //    var data = [UserSingUp]()
@@ -23,11 +23,14 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
         self.tabelview.register(UINib(nibName: "donationPagesCellTableViewCell", bundle: nil), forCellReuseIdentifier: "donationPagesCellTableViewCell")
         
         userdata.sherd.dataChangedHandler = { [weak self] in
-                   DispatchQueue.main.async {
-                       self?.dataFromeFirebaseHelper = userdata.sherd.sharDataFromeGetdata()
-                       self?.tabelview.reloadData()
-                   }
-               }
+            DispatchQueue.main.async {
+                self?.dataFromeFirebaseHelper = userdata.sherd.sharDataFromeGetdata()
+                self?.tabelview.reloadData()
+            }
+        }
+        
+        userdata.sherd.getdata(noindata: defultdata.sher.getnotindata() ?? "")
+        
     }
     
    
@@ -100,6 +103,11 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
     
+    @IBAction func back(_ sender: Any) {
+        
+        self.navigationController?.popViewController(animated: true)
+        
+    }
 }
 
 extension donationPagesViewController {
@@ -124,5 +132,13 @@ extension donationPagesViewController {
         present(leftMenuNavigationController, animated: true, completion: nil)
         
     }
-    
+  
+    func reloadData() {
+        userdata.sherd.getdata(noindata: "") // Fetch all data
+        dataFromeFirebaseHelper = userdata.sherd.sharDataFromeGetdata()
+        DispatchQueue.main.async {
+            self.tabelview.reloadData()
+        }
+    }
+
 }
