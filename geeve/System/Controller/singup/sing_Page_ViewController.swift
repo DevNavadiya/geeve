@@ -235,12 +235,22 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
                 print("Error updating user data: \(error.localizedDescription)")
             } else {
                 print("User data updated successfully")
-                userdata.sherd.getdata(noindata: defultdata.sher.getnotindata() ?? "")
-                
-                if let donationVC = self?.navigationController?.viewControllers.last as? donationPagesViewController {
-                    donationVC.reloadData()
+                        
+                if let index = userdata.sherd.firedata.firstIndex(where: { $0.id == userId }) {
+                    userdata.sherd.firedata[index] = userdata.firebaseuser(dic: [
+                        "name": self?.firest_Name_Texfild.text ?? "",
+                        "lastname": self?.last_Name_TextFileld.text ?? "",
+                        "Email": self?.Email_Textfiled.text ?? "",
+                        "phonenumber": self?.phone_number_textFild.text ?? "",
+                        "Password": self?.paswoord_Text_filed.text ?? ""
+                    ], documentId: userId)
+                    
                 }
-                
+                           // Refresh the data in the donationPagesViewController
+                if let donationVC = self?.navigationController?.viewControllers.last as? donationPagesViewController {
+                                donationVC.dataFromeFirebaseHelper = userdata.sherd.firedata
+                                donationVC.tabelview.reloadData()
+                            }
                 
             }
         }

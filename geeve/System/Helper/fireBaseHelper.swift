@@ -51,7 +51,7 @@ class userdata {
 
    
     struct firebaseuser {
-        
+        var id = String()
         var UserName = String()
         var Email = String()
         var lastname = String()
@@ -59,7 +59,8 @@ class userdata {
         var phonenumber = String()
         
         
-        init(dic : [String : Any]) {
+        init(dic : [String : Any], documentId: String) {
+            self.self.id = documentId
             self.UserName = dic["name"] as? String ?? ""
             self.Email = dic["Email"] as? String ?? ""
             self.lastname = dic["lastname"] as? String ?? ""
@@ -75,25 +76,22 @@ class userdata {
     let databaase = Firestore.firestore()
     var firedata2 : firebaseuser!
 
-func getdata (noindata : String) {
+    func getdata(noindata: String) {
         let document = databaase.collection("Userinfo")
         document.whereField("Email", notIn: [noindata]).getDocuments { quary, error in
             if error != nil {
                 print("nodata")
-                
-            }else{
-                self.firedata.removeAll() 
+            } else {
+                self.firedata.removeAll() // Clear the `firedata` array
                 let arr = quary?.documents
-                for i in arr! {
-                    i.data()
-                    print(i.data())
-                    self.firedata2 = firebaseuser(dic : i.data())
-                    self.firedata.append(self.firedata2)
-                }
+                for doc in arr! {
+                                let documentId = doc.documentID
+                                self.firedata2 = firebaseuser(dic: doc.data(), documentId: documentId)
+                                self.firedata.append(self.firedata2)
+                            }
                 self.dataChangedHandler?()
             }
         }
-        
     }
     
     

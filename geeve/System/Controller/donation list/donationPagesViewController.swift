@@ -103,11 +103,7 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
     
-    @IBAction func back(_ sender: Any) {
-        
-        self.navigationController?.popViewController(animated: true)
-        
-    }
+   
 }
 
 extension donationPagesViewController {
