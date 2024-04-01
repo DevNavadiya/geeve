@@ -61,7 +61,7 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
         self.tic_mark_Terms.isSelected = true
     }
     var shoudhideui = false
-  
+    
     
     
     override func viewDidLoad() {
@@ -180,7 +180,7 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
                 vc.phonenumber = self.phone_number_textFild.text ?? "no password"
                 vc.password = self.paswoord_Text_filed.text ?? "no pass"
                 vc.uid = self.id
-
+                
                 self.navigationController?.pushViewController(vc, animated: true )
                 
             }else{
@@ -214,20 +214,18 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
         
         
     }
+ 
     
     func updateUser() {
-        
-        guard let userId = Auth.auth().currentUser?.uid else {
-            return
-        }
+       
         
         let database = Firestore.firestore()
-        let userRef = database.collection("Userinfo").document(defultdata.sher.getemail() ?? "")
+        let userRef = database.collection("Userinfo").document(email ?? "")
         
         userRef.updateData([
             "name": firest_Name_Texfild.text ?? "",
             "lastname": last_Name_TextFileld.text ?? "",
-            "Email": Email_Textfiled.text ?? "",
+            "Email": email,
             "phonenumber": phone_number_textFild.text ?? "",
             "Password": paswoord_Text_filed.text ?? ""
         ]) { [weak self] error in
@@ -235,27 +233,25 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
                 print("Error updating user data: \(error.localizedDescription)")
             } else {
                 print("User data updated successfully")
-                        
-                if let index = userdata.sherd.firedata.firstIndex(where: { $0.id == userId }) {
+                
+                // Update the firedata array with the updated user data
+                if let index = userdata.sherd.firedata.firstIndex(where: { $0.Email == self?.email }) {
                     userdata.sherd.firedata[index] = userdata.firebaseuser(dic: [
                         "name": self?.firest_Name_Texfild.text ?? "",
                         "lastname": self?.last_Name_TextFileld.text ?? "",
-                        "Email": self?.Email_Textfiled.text ?? "",
+                        "Email": self?.email,
                         "phonenumber": self?.phone_number_textFild.text ?? "",
                         "Password": self?.paswoord_Text_filed.text ?? ""
-                    ], documentId: userId)
-                    
+                    ], documentId: defultdata.sher.getemail() ?? "")
                 }
-                           // Refresh the data in the donationPagesViewController
-                if let donationVC = self?.navigationController?.viewControllers.last as? donationPagesViewController {
-                                donationVC.dataFromeFirebaseHelper = userdata.sherd.firedata
-                                donationVC.tabelview.reloadData()
-                            }
                 
+                // Refresh the data in the donationPagesViewController
+                if let donationVC = self?.navigationController?.viewControllers.last as? donationPagesViewController {
+                    donationVC.dataFromeFirebaseHelper = userdata.sherd.firedata
+                    donationVC.tabelview.reloadData()
+                }
             }
         }
-        
-        
     }
     
     

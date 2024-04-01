@@ -8,6 +8,7 @@
 import UIKit
 import SideMenu
 
+
 class donationPagesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     var userin = UserDefaults.standard
@@ -15,25 +16,34 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tabelview: UITableView!
 //    var data = [UserSingUp]()
     var dataFromeFirebaseHelper = userdata.sherd.sharDataFromeGetdata()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //        print(data)
         self.tabelview.delegate = self
         self.tabelview.dataSource = self
         self.tabelview.register(UINib(nibName: "donationPagesCellTableViewCell", bundle: nil), forCellReuseIdentifier: "donationPagesCellTableViewCell")
-        
+      
         userdata.sherd.dataChangedHandler = { [weak self] in
-            DispatchQueue.main.async {
-                self?.dataFromeFirebaseHelper = userdata.sherd.sharDataFromeGetdata()
-                self?.tabelview.reloadData()
-            }
-        }
-        
-        userdata.sherd.getdata(noindata: defultdata.sher.getnotindata() ?? "")
+               self?.dataFromeFirebaseHelper = userdata.sherd.sharDataFromeGetdata()
+               self?.tabelview.reloadData()
+           }
+           
+           // Fetch the initial data
+           userdata.sherd.getdata(noindata: "")
+       
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                       realmdatabasehelper.shard.syncFirebaseAndRealmData()
+                   }
         
     }
     
-   
+    
+    
+    func syncData() {
+          // Synchronize Firebase and Realm data here
+          realmdatabasehelper.shard.syncFirebaseAndRealmData()
+      }
     
 
 //    func relodedata () {
@@ -56,10 +66,16 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
         cell.name.text = index.UserName
         cell.age.text = index.Email
         cell.documentid = index.Email
+        userdata.sherd.appenddatatorealm()
+
+        
+        
+     
         
         cell.onDeleteButtonTapped = { [weak self] in
                self?.deleteData(at: indexPath)
-           }
+            realmdatabasehelper.shard.syncFirebaseAndRealmData()
+        }
         
         cell.oneditbuttontap = {
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "sing_Page_ViewController") as! sing_Page_ViewController
@@ -134,6 +150,12 @@ extension donationPagesViewController {
         dataFromeFirebaseHelper = userdata.sherd.sharDataFromeGetdata()
         DispatchQueue.main.async {
             self.tabelview.reloadData()
+            
+            
+                
+              
+            
+            
         }
     }
 

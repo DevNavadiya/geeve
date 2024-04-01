@@ -60,7 +60,7 @@ class userdata {
         
         
         init(dic : [String : Any], documentId: String) {
-            self.self.id = documentId
+            self.id = documentId
             self.UserName = dic["name"] as? String ?? ""
             self.Email = dic["Email"] as? String ?? ""
             self.lastname = dic["lastname"] as? String ?? ""
@@ -78,7 +78,7 @@ class userdata {
 
     func getdata(noindata: String) {
         let document = databaase.collection("Userinfo")
-        document.whereField("Email", notIn: [noindata]).getDocuments { quary, error in
+        document.whereField("Email", notIn: [defultdata.sher.getnotindata()!]).getDocuments { quary, error in
             if error != nil {
                 print("nodata")
             } else {
@@ -88,6 +88,7 @@ class userdata {
                                 let documentId = doc.documentID
                                 self.firedata2 = firebaseuser(dic: doc.data(), documentId: documentId)
                                 self.firedata.append(self.firedata2)
+                    
                             }
                 self.dataChangedHandler?()
             }
@@ -107,6 +108,16 @@ class userdata {
         }
     }
 
-    
-    
+    func appenddatatorealm () {
+        
+        for firebaseuser in firedata {
+            let data = datafromefirebaseToRealm(userid: firebaseuser.id, userName: firebaseuser.UserName, email: firebaseuser.Email, lastName: firebaseuser.lastname, password: firebaseuser.password, phoneNumber: firebaseuser.phonenumber)
+            realmdata.append(data)
+            realmdatabasehelper.shard.savedata(data: data)
+            
+        }
+        print(realmdata)
+        
+    }
+   
 }

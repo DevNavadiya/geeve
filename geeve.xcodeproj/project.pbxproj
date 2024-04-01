@@ -22,6 +22,7 @@
 		686843C72BA2DA3C009C6ED5 /* donationPagesCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686843C52BA2DA3C009C6ED5 /* donationPagesCellTableViewCell.swift */; };
 		686843C82BA2DA3C009C6ED5 /* donationPagesCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686843C62BA2DA3C009C6ED5 /* donationPagesCellTableViewCell.xib */; };
 		6886086A2BB6B22900289FAE /* userdefullt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688608692BB6B22900289FAE /* userdefullt.swift */; };
+		689807F62BBA8BE0001B690D /* realm database helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689807F52BBA8BE0001B690D /* realm database helper.swift */; };
 		68A51DE22BB6982E0003357A /* launchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A51DE12BB6982E0003357A /* launchScreenViewController.swift */; };
 		68A61E972BAD46CC008FD2BB /* fireBaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A61E962BAD46CC008FD2BB /* fireBaseHelper.swift */; };
 		83161CD488C2F9461D5E8D59 /* Pods_geeveTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A00D694E05C9393D9144074 /* Pods_geeveTests.framework */; };
@@ -80,6 +81,7 @@
 		686843C52BA2DA3C009C6ED5 /* donationPagesCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = donationPagesCellTableViewCell.swift; sourceTree = "<group>"; };
 		686843C62BA2DA3C009C6ED5 /* donationPagesCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = donationPagesCellTableViewCell.xib; sourceTree = "<group>"; };
 		688608692BB6B22900289FAE /* userdefullt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userdefullt.swift; sourceTree = "<group>"; };
+		689807F52BBA8BE0001B690D /* realm database helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "realm database helper.swift"; sourceTree = "<group>"; };
 		68A51DE12BB6982E0003357A /* launchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = launchScreenViewController.swift; sourceTree = "<group>"; };
 		68A61E962BAD46CC008FD2BB /* fireBaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fireBaseHelper.swift; sourceTree = "<group>"; };
 		7A00D694E05C9393D9144074 /* Pods_geeveTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_geeveTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -347,6 +349,7 @@
 				CE7FD90F2B91CDBD009AE229 /* onBordingslide.swift */,
 				CE7FD9112B91CDD5009AE229 /* helperFunction.swift */,
 				688608692BB6B22900289FAE /* userdefullt.swift */,
+				689807F52BBA8BE0001B690D /* realm database helper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				CE7FD90A2B91CD2D009AE229 /* sing_Page_ViewController.swift in Sources */,
 				CE7FD9122B91CDD5009AE229 /* helperFunction.swift in Sources */,
 				686843C02BA2D97D009C6ED5 /* customePopUpViewController.swift in Sources */,
+				689807F62BBA8BE0001B690D /* realm database helper.swift in Sources */,
 				CE7FD8D32B91CBE9009AE229 /* SceneDelegate.swift in Sources */,
 				680FBAC22BA1A4610068824E /* forgetPasswordViewController.swift in Sources */,
 				68A51DE22BB6982E0003357A /* launchScreenViewController.swift in Sources */,

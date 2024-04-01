@@ -2094,7 +2094,7 @@ password</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXG-MZ-blN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10011.450381679389" y="-13.380281690140846"/>
+            <point key="canvasLocation" x="10008" y="-13"/>
         </scene>
         <!--Side Menu Navigation Controller-->
         <scene sceneID="Chx-bb-Ktg">

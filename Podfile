@@ -14,7 +14,7 @@ pod 'FirebaseAnalytics'
 pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
 pod 'RealmSwift'
-
+pod 'NVActivityIndicatorView'
   target 'geeveTests' do
     inherit! :search_paths
     # Pods for testing

@@ -1016,6 +1016,9 @@ PODS:
     - nanopb/encode (= 2.30910.0)
   - nanopb/decode (2.30910.0)
   - nanopb/encode (2.30910.0)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
   - PromisesObjC (2.4.0)
   - Realm (10.49.1):
     - Realm/Headers (= 10.49.1)
@@ -1031,6 +1034,7 @@ DEPENDENCIES:
   - FirebaseAuth
   - FirebaseFirestore
   - IQKeyboardManagerSwift
+  - NVActivityIndicatorView
   - RealmSwift
   - SideMenu
 
@@ -1057,6 +1061,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - leveldb-library
     - nanopb
+    - NVActivityIndicatorView
     - PromisesObjC
     - Realm
     - RealmSwift
@@ -1085,12 +1090,13 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 7f6b1b1d1497855d2beea7f2f10ffcc6978525b1
   leveldb-library: 06a69cc7582d64b29424a63e085e683cc188230a
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   Realm: 1fab4a224fd7a294eca142a0efe8b54546290fbf
   RealmSwift: 7c3a9c001161eb01b96b171ad965a9c498b962b0
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: 91331f40eef55bb1f2cd60f1460c2186475d4574
+PODFILE CHECKSUM: cc547a8b348e03f26ec9eb35eb1f8ce83a3a3ca8
 
 COCOAPODS: 1.15.2
