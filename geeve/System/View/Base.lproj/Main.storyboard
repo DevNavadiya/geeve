@@ -1965,6 +1965,9 @@ password</string>
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="logout:" destination="6dP-Ee-lrC" eventType="touchUpInside" id="NHF-lX-PvS"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>

@@ -64,16 +64,16 @@ class realmdatabasehelper {
     }
     
     
-    func syncFirebaseAndRealmData() {
-        let firebaseData = userdata.sherd.sharDataFromeGetdata() // Fetch data from Firebase
-        let realmData = Array(realm.objects(datafromefirebaseToRealm.self)) // Fetch data from Realm
+    func dataMatcherFirebaseToRealmdatabase() {
+        let firebaseData = userdata.sherd.sharDataFromeGetdata()
+        let realmData = Array(realm.objects(datafromefirebaseToRealm.self))
         
-        let firebaseIds = Set(firebaseData.map { $0.id }) // Extract user IDs from Firebase data
-        let realmIds = Set(realmData.map { $0.id }) // Extract user IDs from Realm data
+        let firebaseIds = Set(firebaseData.map { $0.id })
+        let realmIds = Set(realmData.map { $0.id })
         
-        let idsToRemoveFromRealm = realmIds.subtracting(firebaseIds) // Identify IDs present in Realm but not in Firebase
+        let idsToRemoveFromRealm = realmIds.subtracting(firebaseIds)
         
-        // Remove entries from Realm that are not present in Firebase
+      
         for id in idsToRemoveFromRealm {
             if let userToDelete = realmData.first(where: { $0.id == id }) {
                 try! realm.write {

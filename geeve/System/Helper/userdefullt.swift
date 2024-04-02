@@ -8,13 +8,13 @@
 import UIKit
 
 class defultdata {
-  
+    
     static let sher = defultdata()
     
     
     let defult = UserDefaults.standard
     
-   
+    
     func setname (firestname : String) {
         
         defult.set(firestname, forKey: "firestname")
@@ -28,7 +28,7 @@ class defultdata {
     
     
     func setlastname (lastname : String) {
-      
+        
         defult.set(lastname, forKey: "lastname")
     }
     
@@ -63,7 +63,7 @@ class defultdata {
         return  defult.string(forKey: "password")
         
     }
-   
+    
     func setemail (email : String) {
         defult.set(email, forKey: "email")
     }
@@ -74,7 +74,7 @@ class defultdata {
         return  defult.string(forKey: "email")
         
     }
-   
+    
     func setnotindata (notindata : String) {
         
         defult.set(notindata, forKey: "notindata")
@@ -85,6 +85,27 @@ class defultdata {
         return defult.string(forKey: "notindata")
     }
     
+    
+    
+    func setlogindata (notindata : String) {
+        
+        defult.set(notindata, forKey: "email")
+    }
+    
+    func getlogindata () -> String? {
+        
+        return defult.string(forKey: "email")
+    }
+    
+    func setloginpass (notindata : String) {
+        
+        defult.set(notindata, forKey: "pass")
+    }
+    
+    func getloginpass () -> String? {
+        
+        return defult.string(forKey: "pass")
+    }
     
     
 }

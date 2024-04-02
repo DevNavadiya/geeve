@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 class singInViewController: UIViewController {
   
     @IBOutlet weak var email: UITextField!
@@ -62,32 +63,38 @@ class singInViewController: UIViewController {
             
             self.present(alert, animated: true)
             
-        }else {
+        } else {
             
-
-            Auth.auth().signIn(withEmail: self.email.text!, password: self.pass.text!) {data,erro in
+            
+            Auth.auth().signIn(withEmail: self.email.text!, password: self.pass.text!) { data,erro in
                 if let error = erro as? NSError {
                     print(error.localizedDescription)
-                
                     
-                    let alert = UIAlertController(title: "New User Found", message: "Plese chke your email id , your emai was allredy rejister on geeve", preferredStyle: .alert)
-                    let btn = UIAlertAction(title: "OK", style: .destructive)
-                    
-                    alert.addAction(btn)
-                    
-                    self.present(alert, animated: true)
-                    
-                    
+                    if let errorCode = AuthErrorCode(rawValue: error.code) {
+                        switch errorCode {
+                        case .userNotFound:
+                            self.showAlert(title: "Email Not Found", message: "The email you entered is not registered. Please sign up with a valid email.")
+                        case .wrongPassword:
+                            self.showAlert(title: "Password Incorrect", message: "The password you entered is incorrect. Please enter the correct password.")
+                        default:
+                            self.showAlert(title: "Error", message: "An error occurred while signing in. Please try again later.")
+                        }
+                    }
                 }else{
-                 
-                    print("userlogin")
-                     
-                     let userinfo = Auth.auth().currentUser
-                    login(Email: defultdata.sher.getemail() ?? "", Password: defultdata.sher.getpassword() ?? "" )
-                   
-                     let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registrationViewController") as! registrationViewController
-                    vc.notindata = defultdata.sher.getemail() ?? ""
-                     self.navigationController?.pushViewController(vc, animated: true)
+                    print("User signed in")
+                
+                        defultdata.sher.setlogindata(notindata: self.email.text ?? "")
+                        defultdata.sher.setloginpass(notindata: self.email.text ?? "")
+                        
+                        print("userlogin")
+                        
+                        let userinfo = Auth.auth().currentUser
+                        login(Email: self.email.text ?? "", Password: self.pass.text ?? "" )
+                        
+                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registrationViewController") as! registrationViewController
+                        vc.notindata = defultdata.sher.getlogindata() ?? ""
+                        self.navigationController?.pushViewController(vc, animated: true)
+                        
                     
                 }
               
@@ -97,6 +104,13 @@ class singInViewController: UIViewController {
         }
             
         
+    }
+    
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
     
 //    MARK: - forgatpassbtn conditon -
@@ -133,3 +147,37 @@ class singInViewController: UIViewController {
     }
 }
 
+extension singInViewController {
+    
+    func checkEmailExistence(_ email: String, completion: @escaping (Bool) -> Void) {
+        let db = Firestore.firestore()
+        db.collection("Userinfo").whereField("Email", isEqualTo: email).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error checking email existence: \(error.localizedDescription)")
+                completion(false)
+            } else {
+                if let snapshot = snapshot, !snapshot.documents.isEmpty {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    }
+    
+    func checkPassword(_ email: String, _ password: String, completion: @escaping (Bool) -> Void) {
+        let db = Firestore.firestore()
+        db.collection("Userinfo").whereField("Email", isEqualTo: email).whereField("Password", isEqualTo: password).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error checking password: \(error.localizedDescription)")
+                completion(false)
+            } else {
+                if let snapshot = snapshot, !snapshot.documents.isEmpty {
+                    completion(true)
+                } else {
+                    completion(false) 
+                }
+            }
+        }
+    }
+}

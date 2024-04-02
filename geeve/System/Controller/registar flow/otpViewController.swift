@@ -15,28 +15,28 @@ class otpViewController: UIViewController {
     @IBOutlet weak var otp: AEOTPTextField!
      var getotp = ""
    
-    let data = defultdata.sher
-    
-    var name = String()
-    var lastname = String()
-    var email = String()
-    var phonenumber = String()
-    var password = String()
-    var uid = String()
-    var verificationID : String?
-    
+//    let data = defultdata.sher
+//    
+//    var name = String()
+//    var lastname = String()
+//    var email = String()
+//    var phonenumber = String()
+//    var password = String()
+//    var uid = String()
+   var verificationID : String?
+//    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         
      
-        data.setname(firestname: name)
-        data.setlastname(lastname: lastname)
-        data.setemail(email: email)
-        data.setphoneNumber(phonenumber: phonenumber)
-        data.setpassword(password: password)
-        
+//        data.setname(firestname: name)
+//        data.setlastname(lastname: lastname)
+//        data.setemail(email: email)
+//        data.setphoneNumber(phonenumber: phonenumber)
+//        data.setpassword(password: password)
+//        
         
         
         self.otp.otpDelegate = self
@@ -92,14 +92,14 @@ sendOTP()
                 print("Error signing in:", error)
                 return
             }
-           
-            saveUserData(name: self.data.getname() ?? "", lastname: self.data.getlastname() ?? "" , Email: self.data.getemail() ?? "", phonenumber: self.data.getphoneNumber() ?? "", Password: self.password, id: self.uid)
-            
+//           
+//            saveUserData(name: self.data.getname() ?? "", lastname: self.data.getlastname() ?? "" , Email: self.data.getemail() ?? "", phonenumber: self.data.getphoneNumber() ?? "", Password: self.password, id: self.uid)
+//            
            
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "registrationViewController") as! registrationViewController
            
-            vc.notindata = self.email
+//            vc.notindata = self.email
             
             self.navigationController?.pushViewController(vc, animated: true)
             

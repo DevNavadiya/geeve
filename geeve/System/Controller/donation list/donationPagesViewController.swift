@@ -32,8 +32,8 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
            // Fetch the initial data
            userdata.sherd.getdata(noindata: "")
        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                       realmdatabasehelper.shard.syncFirebaseAndRealmData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                       realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
                    }
         
     }
@@ -42,7 +42,7 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
     
     func syncData() {
           // Synchronize Firebase and Realm data here
-          realmdatabasehelper.shard.syncFirebaseAndRealmData()
+          realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
       }
     
 
@@ -74,7 +74,7 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
         
         cell.onDeleteButtonTapped = { [weak self] in
                self?.deleteData(at: indexPath)
-            realmdatabasehelper.shard.syncFirebaseAndRealmData()
+            realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
         }
         
         cell.oneditbuttontap = {
@@ -108,6 +108,9 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
                 self?.dataFromeFirebaseHelper.remove(at: indexPath.row)
                 // Update the table view after deletion
                 self?.tabelview.reloadData()
+                
+                
+                realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
             }
         }
     }
@@ -116,7 +119,7 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
     @IBAction func sidebar(_ sender: Any) {
         
         setSideMenu()
-        
+       
     }
     
    
@@ -126,7 +129,19 @@ extension donationPagesViewController {
     
     func setSideMenu() {
         
-        let x = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "customeSideBarViewController")
+        let x = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "customeSideBarViewController") as! customeSideBarViewController
+        x.singouut = {
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mainViewController") as! mainViewController
+                  
+            self.dismiss(animated: true)
+            UserDefaults.standard.setValue(false, forKey: "USERIN")
+            
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        
+        }
+        
+        
         let menu = SideMenuNavigationController(rootViewController: x)
         let leftMenuNavigationController = SideMenuNavigationController(rootViewController: x)
       
@@ -139,6 +154,7 @@ extension donationPagesViewController {
         SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
         SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.navigationController!.view , forMenu: .left)
         
+       
         
         
         present(leftMenuNavigationController, animated: true, completion: nil)
