@@ -66,13 +66,9 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
         cell.name.text = index.UserName
         cell.age.text = index.Email
         cell.documentid = index.Email
-//        userdata.sherd.appenddatatorealm()
 
-        
-        
-     
-        
-        cell.onDeleteButtonTapped = { [weak self] in
+
+         cell.onDeleteButtonTapped = { [weak self] in
                self?.deleteData(at: indexPath)
 //            realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
         }
@@ -99,14 +95,14 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
    
     
     func deleteData(at indexPath: IndexPath) {
-        let documentId = dataFromeFirebaseHelper[indexPath.row].Email // Assuming Email is the document ID
+        let documentId = dataFromeFirebaseHelper[indexPath.row].Email
         userdata.sherd.deleteDocument(documentId: documentId) { [weak self] error in
             if let error = error {
                 print("Error deleting document: \(error)")
             } else {
-                // Remove the deleted item from the data source
+                
                 self?.dataFromeFirebaseHelper.remove(at: indexPath.row)
-                // Update the table view after deletion
+              
                 self?.tabelview.reloadData()
                 
                 
