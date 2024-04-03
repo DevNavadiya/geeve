@@ -169,25 +169,24 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
                 
                 
                 if let email = Email_Textfiled.text, !email.isEmpty {
-                           checkEmailExistence(email) { emailExists in
-                               if emailExists {
-                                   // Show alert if email exists
-                                   DispatchQueue.main.async {
-                                       let alert = UIAlertController(title: "Email Already Exists", message: "The email you entered is already registered. Please use a different email or sign in.", preferredStyle: .alert)
-                                       alert.addAction(UIAlertAction(title: "OK", style: .default))
-                                       self.present(alert, animated: true)
-                                   }
-                               } else {
-                                   // Continue with sign-up process
-                                 acces()
-                               }
-                           }
-                       } else {
-                           // Handle case where email is empty
-                           // Show an alert or perform necessary action
-                       }
+                    checkEmailExistence(email) { emailExists in
+                        if emailExists {
+                            DispatchQueue.main.async {
+                                let alert = UIAlertController(title: "Email Already Exists", message: "The email you entered is already registered. Please use a different email or sign in.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                                self.present(alert, animated: true)
+                            }
+                        } else {
+                            
+                            acces()
+                        }
+                    }
+                } else {
+                    
+                }
                 
-            func acces () {   let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registrationViewController") as! registrationViewController
+                func acces () {   let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "otpViewController") as! otpViewController
+                    
                     
                     data.setname(firestname: self.firest_Name_Texfild.text ?? "")
                     data.setlastname(lastname: self.last_Name_TextFileld.text ?? "")
@@ -197,13 +196,14 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
                     
                     saveUserData(name: self.data.getname() ?? "", lastname: self.data.getlastname() ?? "" , Email: self.data.getemail() ?? "", phonenumber: self.data.getphoneNumber() ?? "", Password: self.data.getpassword() ?? "", id: self.id)
                     
-                    vc.notindata = self.Email_Textfiled.text ?? ""
+                   
+                vc.notindata = self.Email_Textfiled.text ?? ""
                     
                     self.navigationController?.pushViewController(vc, animated: true )
                     
                 }
                 
-                }else{
+            }else{
                 
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "donationPagesViewController") as! donationPagesViewController
                 self.updateUser()
@@ -212,85 +212,85 @@ class sing_Page_ViewController: UIViewController , UITextFieldDelegate {
             }
         }
     }
-      
-            
-            
-            // MARK: - Singin -
-            
-            @IBAction func singin(_ sender: Any) {
+    
+    
+    
+    // MARK: - Singin -
+    
+    @IBAction func singin(_ sender: Any) {
+        
+        navigateToViewController(main: "Main", storyboard: "singInViewController", navigationController: self.navigationController)
+        
+    }
+    
+    @IBAction func privicy(_ sender: Any) {
+        
+        navigateToViewController(main: "Main", storyboard: "webViewController", navigationController: self.navigationController)
+        
+        
+        
+        
+    }
+    
+    
+    func updateUser() {
+        
+        
+        let database = Firestore.firestore()
+        let userRef = database.collection("Userinfo").document(email ?? "")
+        
+        userRef.updateData([
+            "name": firest_Name_Texfild.text ?? "",
+            "lastname": last_Name_TextFileld.text ?? "",
+            "Email": email ?? "",
+            "phonenumber": phone_number_textFild.text ?? "",
+            "Password": paswoord_Text_filed.text ?? ""
+        ]) { [weak self] error in
+            if let error = error {
+                print("Error updating user data: \(error.localizedDescription)")
+            } else {
+                print("User data updated successfully")
                 
-                navigateToViewController(main: "Main", storyboard: "singInViewController", navigationController: self.navigationController)
-                
-            }
-            
-            @IBAction func privicy(_ sender: Any) {
-                
-                navigateToViewController(main: "Main", storyboard: "webViewController", navigationController: self.navigationController)
-                
-                
-                
-                
-            }
-            
-            
-            func updateUser() {
-                
-                
-                let database = Firestore.firestore()
-                let userRef = database.collection("Userinfo").document(email ?? "")
-                
-                userRef.updateData([
-                    "name": firest_Name_Texfild.text ?? "",
-                    "lastname": last_Name_TextFileld.text ?? "",
-                    "Email": email ?? "",
-                    "phonenumber": phone_number_textFild.text ?? "",
-                    "Password": paswoord_Text_filed.text ?? ""
-                ]) { [weak self] error in
-                    if let error = error {
-                        print("Error updating user data: \(error.localizedDescription)")
-                    } else {
-                        print("User data updated successfully")
-                        
-                        // Update the firedata array with the updated user data
-                        if let index = userdata.sherd.firedata.firstIndex(where: { $0.Email == self?.email }) {
-                            userdata.sherd.firedata[index] = userdata.firebaseuser(dic: [
-                                "name": self?.firest_Name_Texfild.text ?? "",
-                                "lastname": self?.last_Name_TextFileld.text ?? "",
-                                "Email": self?.email ?? "",
-                                "phonenumber": self?.phone_number_textFild.text ?? "",
-                                "Password": self?.paswoord_Text_filed.text ?? ""
-                            ], documentId: defultdata.sher.getemail() ?? "")
-                        }
-                        
-                        // Refresh the data in the donationPagesViewController
-                        if let donationVC = self?.navigationController?.viewControllers.last as? donationPagesViewController {
-                            donationVC.dataFromeFirebaseHelper = userdata.sherd.firedata
-                            donationVC.tabelview.reloadData()
-                        }
-                    }
+                // Update the firedata array with the updated user data
+                if let index = userdata.sherd.firedata.firstIndex(where: { $0.Email == self?.email }) {
+                    userdata.sherd.firedata[index] = userdata.firebaseuser(dic: [
+                        "name": self?.firest_Name_Texfild.text ?? "",
+                        "lastname": self?.last_Name_TextFileld.text ?? "",
+                        "Email": self?.email ?? "",
+                        "phonenumber": self?.phone_number_textFild.text ?? "",
+                        "Password": self?.paswoord_Text_filed.text ?? ""
+                    ], documentId: defultdata.sher.getemail() ?? "")
                 }
-            }
-            
-            
-        }
-        
-        
-        
-        extension sing_Page_ViewController {
-            
-            func checkEmailExistence(_ email: String, completion: @escaping (Bool) -> Void) {
-                let db = Firestore.firestore()
-                db.collection("Userinfo").whereField("Email", isEqualTo: email).getDocuments { (snapshot, error) in
-                    if let error = error {
-                        print("Error checking email existence: \(error.localizedDescription)")
-                        completion(false)
-                    } else {
-                        if let snapshot = snapshot, !snapshot.documents.isEmpty {
-                            completion(true) // Email exists
-                        } else {
-                            completion(false) // Email does not exist
-                        }
-                    }
+                
+                // Refresh the data in the donationPagesViewController
+                if let donationVC = self?.navigationController?.viewControllers.last as? donationPagesViewController {
+                    donationVC.dataFromeFirebaseHelper = userdata.sherd.firedata
+                    donationVC.tabelview.reloadData()
                 }
             }
         }
+    }
+    
+    
+}
+
+
+
+extension sing_Page_ViewController {
+    
+    func checkEmailExistence(_ email: String, completion: @escaping (Bool) -> Void) {
+        let db = Firestore.firestore()
+        db.collection("Userinfo").whereField("Email", isEqualTo: email).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error checking email existence: \(error.localizedDescription)")
+                completion(false)
+            } else {
+                if let snapshot = snapshot, !snapshot.documents.isEmpty {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    }
+}

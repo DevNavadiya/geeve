@@ -37,7 +37,7 @@ class donationPagesCellTableViewCell: UITableViewCell {
     @IBAction func deletbuttontap(_ sender: Any) {
         
         onDeleteButtonTapped?()
-        realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
+//        realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
     }
     
     

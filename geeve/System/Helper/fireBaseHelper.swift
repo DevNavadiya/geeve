@@ -108,16 +108,16 @@ class userdata {
         }
     }
 
-    func appenddatatorealm () {
-        
-        for firebaseuser in firedata {
-            let data = datafromefirebaseToRealm(userid: firebaseuser.id, userName: firebaseuser.UserName, email: firebaseuser.Email, lastName: firebaseuser.lastname, password: firebaseuser.password, phoneNumber: firebaseuser.phonenumber)
-            realmdata.append(data)
-            realmdatabasehelper.shard.savedata(data: data)
-            
-        }
-        print(realmdata)
-        
-    }
-   
+//    func appenddatatorealm () {
+//        
+//        for firebaseuser in firedata {
+//            let data = datafromefirebaseToRealm(userid: firebaseuser.id, userName: firebaseuser.UserName, email: firebaseuser.Email, lastName: firebaseuser.lastname, password: firebaseuser.password, phoneNumber: firebaseuser.phonenumber)
+//            realmdata.append(data)
+//            realmdatabasehelper.shard.savedata(data: data)
+//            
+//        }
+//        print(realmdata)
+//        
+//    }
+//   
 }

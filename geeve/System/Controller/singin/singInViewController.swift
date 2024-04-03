@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 
 class singInViewController: UIViewController {
-  
+    
     @IBOutlet weak var email: UITextField!
     
     @IBOutlet weak var pass: UITextField!
@@ -19,18 +19,18 @@ class singInViewController: UIViewController {
     @IBOutlet weak var remember_me: UIButton!
     
     @IBOutlet weak var eye: UIButton!
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
     }
     
-// MARK: - remeber mi butoon condition -
-   
+    // MARK: - remeber mi butoon condition -
+    
     @IBAction func remember_Mi_Btn(_ sender: Any) {
         
-    
+        
         if  !remember_me.isSelected == true {
             
             let image = UIImage(named: "cutome")
@@ -49,7 +49,7 @@ class singInViewController: UIViewController {
         
         
         
-// MARK: - singupbtn conditon -
+        // MARK: - singupbtn conditon -
         
     }
     
@@ -59,33 +59,33 @@ class singInViewController: UIViewController {
             if email.text!.isEmpty{ showAlert(title: "email", message: "Please enter email.") }else{
                 showAlert(title: "Password", message: "Please enter Password.")
             }
-             return
-         }
-         let db = Firestore.firestore()
+            return
+        }
+        let db = Firestore.firestore()
         let userInfoRef = db.collection("Userinfo").document(email)
-         
-         userInfoRef.getDocument { [weak self] (document, error) in
-             guard let strongSelf = self else { return }
-
-             if let error = error {
-                 print("Error fetching user document: \(error.localizedDescription)")
-                 strongSelf.showAlert(title: "Error", message: "Failed to authenticate. Please try again.")
-                 return
-             }
-
-             guard let document = document, document.exists else {
-                 strongSelf.showAlert(title: "User Not Exist", message: "User not found.")
-                 return
-             }
+        
+        userInfoRef.getDocument { [weak self] (document, error) in
+            guard let strongSelf = self else { return }
+            
+            if let error = error {
+                print("Error fetching user document: \(error.localizedDescription)")
+                strongSelf.showAlert(title: "Error", message: "Failed to authenticate. Please try again.")
+                return
+            }
+            
+            guard let document = document, document.exists else {
+                strongSelf.showAlert(title: "User Not Exist", message: "User not found.")
+                return
+            }
             let userData = document.data()
-             if let storedPassword = userData?["Password"] as? String, storedPassword == password {
+            if let storedPassword = userData?["Password"] as? String, storedPassword == password {
                 
-                 strongSelf.navigateToNextScreen()
-             } else {
-                 strongSelf.showAlert(title: "Password Not Exist", message: "Incorrect password.")
-             }
-         }
-     }
+                strongSelf.navigateToNextScreen()
+            } else {
+                strongSelf.showAlert(title: "Password Not Exist", message: "Incorrect password.")
+            }
+        }
+    }
     
     
     
@@ -108,9 +108,9 @@ class singInViewController: UIViewController {
         vc.notindata = defultdata.sher.getlogindata() ?? ""
         self.navigationController?.pushViewController(vc, animated: true)
         
-      }
+    }
     
-//    MARK: - forgatpassbtn conditon -
+    //    MARK: - forgatpassbtn conditon -
     
     @IBAction func forgat_Pass_Btn(_ sender: Any) {
         
@@ -118,7 +118,7 @@ class singInViewController: UIViewController {
         
     }
     
-// MARK: -  singinbtn conditon -
+    // MARK: -  singinbtn conditon -
     
     @IBAction func sing_In_Btn(_ sender: Any) {
         navigateToViewController(main: "Main", storyboard: "sing_Page_ViewController", navigationController: self.navigationController)

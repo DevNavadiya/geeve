@@ -32,18 +32,18 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
            // Fetch the initial data
            userdata.sherd.getdata(noindata: "")
        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                       realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
-                   }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                       realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
+//                   }
         
     }
     
     
     
-    func syncData() {
-          // Synchronize Firebase and Realm data here
-          realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
-      }
+//    func syncData() {
+//          // Synchronize Firebase and Realm data here
+//          realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
+//      }
     
 
 //    func relodedata () {
@@ -66,7 +66,7 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
         cell.name.text = index.UserName
         cell.age.text = index.Email
         cell.documentid = index.Email
-        userdata.sherd.appenddatatorealm()
+//        userdata.sherd.appenddatatorealm()
 
         
         
@@ -74,7 +74,7 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
         
         cell.onDeleteButtonTapped = { [weak self] in
                self?.deleteData(at: indexPath)
-            realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
+//            realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
         }
         
         cell.oneditbuttontap = {
@@ -110,7 +110,7 @@ class donationPagesViewController: UIViewController, UITableViewDelegate, UITabl
                 self?.tabelview.reloadData()
                 
                 
-                realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
+//                realmdatabasehelper.shard.dataMatcherFirebaseToRealmdatabase()
             }
         }
     }

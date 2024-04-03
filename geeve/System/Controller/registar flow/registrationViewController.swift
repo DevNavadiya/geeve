@@ -18,7 +18,7 @@ class registrationViewController: UIViewController {
 //    var data = [UserSingIn]()
     
    
-    var notindata = String()
+  
     
     
     
@@ -28,7 +28,7 @@ class registrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        defultdata.sher.setnotindata(notindata: notindata)
+        
       
         self.donor_btn.isSelected = true
         self.donor_btn.layer.borderWidth = 5

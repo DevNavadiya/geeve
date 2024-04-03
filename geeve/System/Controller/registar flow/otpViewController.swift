@@ -14,6 +14,7 @@ class otpViewController: UIViewController {
 
     @IBOutlet weak var otp: AEOTPTextField!
      var getotp = ""
+    var notindata = String()
    
 //    let data = defultdata.sher
 //    
@@ -77,10 +78,7 @@ sendOTP()
        
 //        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
         
-        
-        
-       
-       
+        defultdata.sher.setnotindata(notindata: notindata)
         guard let verificationID = self.verificationID else {
                 print("Verification ID is nil")
                 return
