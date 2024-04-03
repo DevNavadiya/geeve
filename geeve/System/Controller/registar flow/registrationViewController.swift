@@ -108,7 +108,20 @@ extension registrationViewController {
     
     func setSideMenu() {
         
-        let x = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "customeSideBarViewController")
+        let x = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "customeSideBarViewController") as! customeSideBarViewController
+       
+        x.singouut = {
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mainViewController") as! mainViewController
+                  
+            self.dismiss(animated: true)
+            UserDefaults.standard.setValue(false, forKey: "USERIN")
+            
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        
+        }
+        
+        
         let menu = SideMenuNavigationController(rootViewController: x)
         let leftMenuNavigationController = SideMenuNavigationController(rootViewController: x)
       

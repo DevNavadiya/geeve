@@ -8,6 +8,8 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+
+
 class singInViewController: UIViewController {
   
     @IBOutlet weak var email: UITextField!
@@ -51,67 +53,62 @@ class singInViewController: UIViewController {
         
     }
     
-    @IBAction func sing_Up_Btn(_ sender: Any) {
-        
-        if email.text!.isEmpty || pass.text!.isEmpty {
-            
-            
-            let alert = UIAlertController(title: "Sing In", message: "plese enter Valid email id or password", preferredStyle: .alert)
-            
-            let btn1 = UIAlertAction(title: "OK", style: .default)
-            alert.addAction(btn1)
-            
-            self.present(alert, animated: true)
-            
-        } else {
-            
-            
-            Auth.auth().signIn(withEmail: self.email.text!, password: self.pass.text!) { data,erro in
-                if let error = erro as? NSError {
-                    print(error.localizedDescription)
-                    
-                    if let errorCode = AuthErrorCode(rawValue: error.code) {
-                        switch errorCode {
-                        case .userNotFound:
-                            self.showAlert(title: "Email Not Found", message: "The email you entered is not registered. Please sign up with a valid email.")
-                        case .wrongPassword:
-                            self.showAlert(title: "Password Incorrect", message: "The password you entered is incorrect. Please enter the correct password.")
-                        default:
-                            self.showAlert(title: "Error", message: "An error occurred while signing in. Please try again later.")
-                        }
-                    }
-                }else{
-                    print("User signed in")
-                
-                        defultdata.sher.setlogindata(notindata: self.email.text ?? "")
-                        defultdata.sher.setloginpass(notindata: self.email.text ?? "")
-                        
-                        print("userlogin")
-                        
-                        let userinfo = Auth.auth().currentUser
-                        login(Email: self.email.text ?? "", Password: self.pass.text ?? "" )
-                        
-                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registrationViewController") as! registrationViewController
-                        vc.notindata = defultdata.sher.getlogindata() ?? ""
-                        self.navigationController?.pushViewController(vc, animated: true)
-                        
-                    
-                }
-              
+    @IBAction func signInButtonTapped(_ sender: Any) {
+        guard let email = self.email.text, !email.isEmpty,
+              let password = self.pass.text, !password.isEmpty else {
+            if email.text!.isEmpty{ showAlert(title: "email", message: "Please enter email.") }else{
+                showAlert(title: "Password", message: "Please enter Password.")
             }
-            
-           
-        }
-            
-        
-    }
+             return
+         }
+         let db = Firestore.firestore()
+        let userInfoRef = db.collection("Userinfo").document(email)
+         
+         userInfoRef.getDocument { [weak self] (document, error) in
+             guard let strongSelf = self else { return }
+
+             if let error = error {
+                 print("Error fetching user document: \(error.localizedDescription)")
+                 strongSelf.showAlert(title: "Error", message: "Failed to authenticate. Please try again.")
+                 return
+             }
+
+             guard let document = document, document.exists else {
+                 strongSelf.showAlert(title: "User Not Exist", message: "User not found.")
+                 return
+             }
+            let userData = document.data()
+             if let storedPassword = userData?["Password"] as? String, storedPassword == password {
+                
+                 strongSelf.navigateToNextScreen()
+             } else {
+                 strongSelf.showAlert(title: "Password Not Exist", message: "Incorrect password.")
+             }
+         }
+     }
+    
     
     
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
+    
+    private func navigateToNextScreen() {
+        defultdata.sher.setlogindata(notindata: self.email.text ?? "")
+        defultdata.sher.setloginpass(notindata: self.email.text ?? "")
+        
+        print("userlogin")
+        
+        let userinfo = Auth.auth().currentUser
+        login(Email: self.email.text ?? "", Password: self.pass.text ?? "" )
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registrationViewController") as! registrationViewController
+        vc.notindata = defultdata.sher.getlogindata() ?? ""
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+      }
     
 //    MARK: - forgatpassbtn conditon -
     
@@ -175,7 +172,7 @@ extension singInViewController {
                 if let snapshot = snapshot, !snapshot.documents.isEmpty {
                     completion(true)
                 } else {
-                    completion(false) 
+                    completion(false)
                 }
             }
         }

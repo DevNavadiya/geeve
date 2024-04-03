@@ -825,7 +825,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="sing_Up_Btn:" destination="FFd-Tu-cyF" eventType="touchUpInside" id="OFZ-XD-7Zu"/>
+                                    <action selector="signInButtonTapped:" destination="FFd-Tu-cyF" eventType="touchUpInside" id="dUc-FS-gcb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rnk-OW-NHT">
