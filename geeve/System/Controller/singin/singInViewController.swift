@@ -105,7 +105,7 @@ class singInViewController: UIViewController {
         login(Email: self.email.text ?? "", Password: self.pass.text ?? "" )
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registrationViewController") as! registrationViewController
-        vc.notindata = defultdata.sher.getlogindata() ?? ""
+      
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
